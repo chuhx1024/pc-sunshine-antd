@@ -1,11 +1,13 @@
 <template>
     <div class="app-main">
-        <router-view  />
+        <transition name="fade-transform" mode="out-in">
+            <router-view  />
+        </transition>
     </div>
 </template>
 
 <style lang="scss" scoped>
 .app-main {
-    padding-top: 50px;
+    padding: 50px 15px 15px;
 }
 </style>

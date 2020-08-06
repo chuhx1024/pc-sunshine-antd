@@ -3,15 +3,18 @@
         <div class="trigger-btn" @click="toggleCollapsed">
             <a-icon :type="isCollapse ? 'menu-unfold' : 'menu-fold'" />
         </div>
+        <navbar-breadcrumb/>
     </div>
 </template>
 <script>
 import { mapGetters } from 'vuex'
 import { Icon } from 'ant-design-vue'
+import NavbarBreadcrumb from './NavbarBreadcrumb'
 export default {
     name: 'navbar',
     components: {
         AIcon: Icon,
+        NavbarBreadcrumb,
     },
     computed: {
         ...mapGetters(['sidebar']),

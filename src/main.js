@@ -8,9 +8,10 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
-import { Menu } from 'ant-design-vue'
+import { Menu, Breadcrumb } from 'ant-design-vue'
 
 Vue.use(Menu)
+Vue.use(Breadcrumb)
 
 Vue.config.productionTip = false
 

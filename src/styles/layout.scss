@@ -1,0 +1,21 @@
+.app-wrapper {
+    display: flex;
+    height: 100%;
+}
+.sidebar-container {
+    flex-basis: $sideBarWidth;
+    .ant-menu {
+        transition: 0s width ease-in-out;
+        height: calc(100% - 50px)
+    }
+}
+.hideSidebar {
+    .sidebar-container {
+        flex-basis: 54px!important;
+       
+    }
+}
+.main-container {
+    flex: 1;
+    overflow-y: auto;
+}

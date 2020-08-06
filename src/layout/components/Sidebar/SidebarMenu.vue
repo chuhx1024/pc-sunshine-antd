@@ -1,25 +1,22 @@
 <template>
-    <div style="width: 256px">
-
-        <a-menu
-            :default-selected-keys="['1']"
-            mode="inline"
-            theme="dark"
-            :inline-collapsed="isCollapse"
-        >
-            <template v-for="item in routes" >
-                <template v-if="!item.children">
-                    <a-menu-item :key="item.path">
-                        <app-link :to="item.path" >
-                            <a-icon type="pie-chart" />
-                            <span>{{ item.meta.title }}</span>
-                        </app-link>
-                    </a-menu-item>
-                </template>
-                <my-item v-else :key="item.path" :menu-info="item" />
+    <a-menu
+        :default-selected-keys="['1']"
+        mode="inline"
+        theme="dark"
+        :inline-collapsed="isCollapse"
+    >
+        <template v-for="item in routes" >
+            <template v-if="!item.children">
+                <a-menu-item :key="item.path">
+                    <app-link :to="item.path" >
+                        <a-icon type="pie-chart" />
+                        <span>{{ item.meta.title }}</span>
+                    </app-link>
+                </a-menu-item>
             </template>
-        </a-menu>
-    </div>
+            <my-item v-else :key="item.path" :menu-info="item" />
+        </template>
+    </a-menu>
 </template>
 
 <script>

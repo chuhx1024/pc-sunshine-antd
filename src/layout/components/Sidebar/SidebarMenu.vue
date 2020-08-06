@@ -1,13 +1,11 @@
 <template>
     <div style="width: 256px">
-        <a-button type="primary" style="margin-bottom: 16px" @click="toggleCollapsed">
-            <a-icon :type="collapsed ? 'menu-unfold' : 'menu-fold'" />
-        </a-button>
+
         <a-menu
             :default-selected-keys="['1']"
             mode="inline"
             theme="dark"
-            :inline-collapsed="collapsed"
+            :inline-collapsed="isCollapse"
         >
             <template v-for="item in routes" >
                 <template v-if="!item.children">
@@ -25,14 +23,12 @@
 </template>
 
 <script>
-
-import { Button, Icon } from 'ant-design-vue'
+import { mapGetters } from 'vuex'
+import { Icon } from 'ant-design-vue'
 import MyItem from './MyItem'
 import AppLink from './AppLink'
 export default {
     components: {
-        // 'sub-menu': SubMenu,
-        AButton: Button,
         AIcon: Icon,
         MyItem,
         AppLink,
@@ -60,14 +56,14 @@ export default {
         }
     },
     computed: {
+        ...mapGetters(['sidebar']),
         routes () {
             return this.$router.options.routes
         },
-    },
-    methods: {
-        toggleCollapsed () {
-            this.collapsed = !this.collapsed
+        isCollapse () {
+            return !this.sidebar.opened
         },
     },
+
 }
 </script>

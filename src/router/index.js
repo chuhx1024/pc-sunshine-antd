@@ -22,10 +22,24 @@ export const constantRoutes = [
             {
                 path: 'home2',
                 name: 'home',
-                component: () => import('@/views/Home/index.vue'),
+                component: () => import('@/views/Home2/index.vue'),
                 meta: { title: 'home2', icon: 'home' },
+                children: [
+                    {
+                        path: 'home2',
+                        name: 'home2',
+                        component: () => import('@/views/Home2/index.vue'),
+                        meta: { title: 'home', icon: 'home' },
+                    },
+                ],
             },
         ],
+    },
+    {
+        path: '/abc',
+        component: Layout,
+        redirect: '/home',
+        meta: { title: 'Example', icon: 'el-icon-s-help' },
     },
 
 ]

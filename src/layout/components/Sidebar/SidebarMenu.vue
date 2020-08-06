@@ -9,12 +9,16 @@
             theme="dark"
             :inline-collapsed="collapsed"
         >
-            <template v-for="item in list">
-                <a-menu-item v-if="!item.children" :key="item.key">
-                    <a-icon type="pie-chart" />
-                    <span>{{ item.title }}</span>
-                </a-menu-item>
-                <my-item v-else :key="item.key" :menu-info="item" />
+            <template v-for="item in routes" >
+                <template v-if="!item.children">
+                    <a-menu-item :key="item.path">
+                        <app-link :to="item.path" >
+                            <a-icon type="pie-chart" />
+                            <span>{{ item.meta.title }}</span>
+                        </app-link>
+                    </a-menu-item>
+                </template>
+                <my-item v-else :key="item.path" :menu-info="item" />
             </template>
         </a-menu>
     </div>
@@ -24,12 +28,14 @@
 
 import { Button, Icon } from 'ant-design-vue'
 import MyItem from './MyItem'
+import AppLink from './AppLink'
 export default {
     components: {
         // 'sub-menu': SubMenu,
         AButton: Button,
         AIcon: Icon,
         MyItem,
+        AppLink,
     },
     data () {
         return {
@@ -52,6 +58,11 @@ export default {
                 },
             ],
         }
+    },
+    computed: {
+        routes () {
+            return this.$router.options.routes
+        },
     },
     methods: {
         toggleCollapsed () {

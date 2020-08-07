@@ -6,40 +6,95 @@ import Layout from '@/layout'
 Vue.use(Router)
 
 export const constantRoutes = [
-
     {
         path: '/',
         component: Layout,
-        redirect: '/home',
+        redirect: '/dashboard',
+        children: [{
+            path: '/dashboard',
+            name: 'Dashboard',
+            component: () => import('@/views/dashboard-page/index'),
+            meta: { title: 'Dashboard', icon: 'dashboard' },
+        }],
+    },
+    {
+        path: '/example',
+        component: Layout,
+        redirect: '/example/table',
+        name: 'Example',
         meta: { title: 'Example', icon: 'el-icon-s-help' },
         children: [
             {
-                path: 'home',
-                name: 'home',
-                component: () => import('@/views/Home/index.vue'),
-                meta: { title: 'home', icon: 'home' },
+                path: '/example/table',
+                name: 'Table',
+                component: () => import('@/views/example/table-page'),
+                meta: { title: 'Table', icon: 'table' },
             },
             {
-                path: 'home2',
-                name: 'home',
-                component: () => import('@/views/Home2/index.vue'),
-                meta: { title: 'home2', icon: 'home' },
-                children: [
-                    {
-                        path: 'home2',
-                        name: 'home2',
-                        component: () => import('@/views/Home2/index.vue'),
-                        meta: { title: 'home', icon: 'home' },
-                    },
-                ],
+                path: '/example/tree',
+                name: 'Tree',
+                component: () => import('@/views/example/tree-page'),
+                meta: { title: 'Tree', icon: 'tree' },
             },
         ],
     },
     {
-        path: '/abc',
+        path: '/nested',
         component: Layout,
-        redirect: '/home',
-        meta: { title: 'Example', icon: 'el-icon-s-help' },
+        redirect: '/nested/menu1',
+        name: 'Nested',
+        meta: {
+            title: 'Nested',
+            icon: 'nested',
+        },
+        children: [
+            {
+                path: '/nested/menu1',
+                component: () => import('@/views/example/table-page'), // Parent router-view
+                name: 'Menu1',
+                meta: { title: 'Menu1' },
+                children: [
+                    {
+                        path: '/nested/menu1',
+                        component: () => import('@/views/example/table-page'),
+                        name: 'Menu1-1',
+                        meta: { title: 'Menu1-1' },
+                    },
+                    {
+                        path: '/nested/menu1/menu1-2',
+                        component: () => import('@/views/example/table-page'),
+                        name: 'Menu1-2',
+                        meta: { title: 'Menu1-2' },
+                        children: [
+                            {
+                                path: '/nested/menu1/menu1-2/menu1-2-1',
+                                component: () => import('@/views/example/table-page'),
+                                name: 'Menu1-2-1',
+                                meta: { title: 'Menu1-2-1' },
+                            },
+                            {
+                                path: '/nested/menu1/menu1-2/menu1-2-2',
+                                component: () => import('@/views/example/table-page'),
+                                name: 'Menu1-2-2',
+                                meta: { title: 'Menu1-2-2' },
+                            },
+                        ],
+                    },
+                    {
+                        path: '/nested/menu1-3',
+                        component: () => import('@/views/example/table-page'),
+                        name: 'Menu1-3',
+                        meta: { title: 'Menu1-3' },
+                    },
+                ],
+            },
+            {
+                path: 'menu2',
+                component: () => import('@/views/example/table-page'),
+                name: 'Menu2',
+                meta: { title: 'menu2' },
+            },
+        ],
     },
 
 ]

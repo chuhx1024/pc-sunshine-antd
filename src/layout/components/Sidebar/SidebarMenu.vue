@@ -6,21 +6,20 @@
         :inline-collapsed="collapse"
     >
         <template v-for="item in routes" >
-            <template v-if="!item.children">
-                <a-menu-item :key="item.path">
-                    <app-link :to="item.path" >
+            <template v-if="item.children.length === 1">
+                <a-menu-item :key="item.children[0].path">
+                    <app-link :to="item.children[0].path" >
                         <a-icon type="pie-chart" />
-                        <span>{{ item.meta.title }}</span>
+                        <span>{{ item.children[0].meta.title }}</span>
                     </app-link>
                 </a-menu-item>
             </template>
-            <my-item v-else :key="item.path" :menu-info="item" />
+            <my-item v-else :key="item.path" :menu-info="item" base-path="item.path" />
         </template>
     </a-menu>
 </template>
 
 <script>
-
 import { Icon } from 'ant-design-vue'
 import MyItem from './MyItem'
 import AppLink from './AppLink'
@@ -38,24 +37,6 @@ export default {
     },
     data () {
         return {
-            collapsed: false,
-            list: [
-                {
-                    key: '1',
-                    title: 'Option 1',
-                },
-                {
-                    key: '2',
-                    title: 'Navigation 2',
-                    children: [
-                        {
-                            key: '2.1',
-                            title: 'Navigation 3',
-                            children: [{ key: '2.1.1', title: 'Option 2.1.1' }],
-                        },
-                    ],
-                },
-            ],
         }
     },
     computed: {

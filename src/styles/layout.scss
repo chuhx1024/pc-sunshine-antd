@@ -4,15 +4,19 @@
 }
 .sidebar-container {
     flex-basis: $sideBarWidth;
+    transition: flex-basis 0.2s ease-in-out;
     .ant-menu {
-        transition: 0s width ease-in-out;
+        flex-basis: $sideBarWidth;
+        transition: width 0s ease-in-out, padding-left 0s ease-in-out, padding-right 0s ease-in-out;
         height: calc(100% - 50px)
+    }
+    .ant-menu-inline-collapsed {
+        width: 100%;
     }
 }
 .hideSidebar {
     .sidebar-container {
-        flex-basis: 54px!important;
-       
+        flex-basis: 70px!important;
     }
 }
 .main-container {

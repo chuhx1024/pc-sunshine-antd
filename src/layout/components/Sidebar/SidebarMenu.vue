@@ -3,7 +3,7 @@
         :default-selected-keys="['1']"
         mode="inline"
         theme="dark"
-        :inline-collapsed="isCollapse"
+        :inline-collapsed="collapse"
     >
         <template v-for="item in routes" >
             <template v-if="!item.children">
@@ -20,11 +20,17 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+
 import { Icon } from 'ant-design-vue'
 import MyItem from './MyItem'
 import AppLink from './AppLink'
 export default {
+    props: {
+        collapse: {
+            type: Boolean,
+            default: true,
+        },
+    },
     components: {
         AIcon: Icon,
         MyItem,
@@ -53,12 +59,8 @@ export default {
         }
     },
     computed: {
-        ...mapGetters(['sidebar']),
         routes () {
             return this.$router.options.routes
-        },
-        isCollapse () {
-            return !this.sidebar.opened
         },
     },
 

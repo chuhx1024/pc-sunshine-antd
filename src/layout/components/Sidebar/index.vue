@@ -1,10 +1,11 @@
 <template>
-    <div class="sidebar-container">
-        <logo :collapse="false"/>
-        <sidebar-menu/>
+    <div>
+        <logo :collapse="isCollapse"/>
+        <sidebar-menu :collapse="isCollapse"/>
     </div>
 </template>
 <script>
+import { mapGetters } from 'vuex'
 import Logo from './Logo'
 import SidebarMenu from './SidebarMenu'
 export default {
@@ -13,6 +14,12 @@ export default {
     components: {
         Logo,
         SidebarMenu,
+    },
+    computed: {
+        ...mapGetters(['sidebar']),
+        isCollapse () {
+            return !this.sidebar.opened
+        },
     },
 
 }

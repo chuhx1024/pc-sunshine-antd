@@ -18,12 +18,11 @@ export default {
         this.fetchData()
     },
     methods: {
-        fetchData () {
+        async fetchData () {
             this.listLoading = true
-            getList().then(res => {
-                this.list = res.data.data.items
-                this.listLoading = false
-            })
+            const { data } = await getList()
+            this.list = data.data.items
+            this.listLoading = false
         },
     },
 }

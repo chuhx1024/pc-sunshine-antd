@@ -5,7 +5,7 @@
             <a-icon type="mail" /><span>{{ props.menuInfo.meta.title }}</span>
         </span>
         <template v-for="item in props.menuInfo.children">
-            <a-menu-item v-if="!item.children" :key="item.key">
+            <a-menu-item v-if="!item.children" :key="item.path">
                 <app-link :to="item.path" >
                     <a-icon type="pie-chart" />
                     <span>{{ item. meta.title }}</span>

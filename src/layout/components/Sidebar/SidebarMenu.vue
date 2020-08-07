@@ -1,6 +1,6 @@
 <template>
     <a-menu
-        :default-selected-keys="['1']"
+        :selected-keys="[activeMenu]"
         mode="inline"
         theme="dark"
         :inline-collapsed="collapse"
@@ -42,6 +42,15 @@ export default {
     computed: {
         routes () {
             return this.$router.options.routes
+        },
+        activeMenu () {
+            const route = this.$route
+            const { meta, path } = route
+            // if set path, the sidebar will highlight the path you set
+            if (meta.activeMenu) {
+                return meta.activeMenu
+            }
+            return path
         },
     },
 

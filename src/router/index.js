@@ -95,7 +95,7 @@ export const constantRoutes = [
                 ],
             },
             {
-                path: 'menu2',
+                path: '/nested/menu2',
                 component: () => import('@/views/example/table-page'),
                 name: 'Menu2',
                 meta: { title: 'menu2' },

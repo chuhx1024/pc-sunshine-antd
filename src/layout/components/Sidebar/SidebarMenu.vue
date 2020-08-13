@@ -41,7 +41,7 @@ export default {
     },
     computed: {
         routes () {
-            return this.$router.options.routes
+            return this.$router.options.routes.filter(item => item.hidden !== true)
         },
         activeMenu () {
             const route = this.$route
